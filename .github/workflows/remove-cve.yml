@@ -1,0 +1,36 @@
+# GitHub Action to remove a CVE last updated 5+ hours ago from main.
+
+name: Remove CVE
+
+on:
+  workflow_dispatch: # can only be run via GH website
+
+jobs:
+  remove_file:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Check last commit time
+        id: check_time
+        run: | # CVE hard-coded for now for simplicity
+          echo "last_commit=$(git log -1 --format=%cd --date=iso -- cves/2024/5xxx/CVE-2024-5379.json)" 
+
+      - name: Determine time difference
+        id: time_diff
+        run: |
+          LAST_COMMIT=$("${{ steps.check_time.outputs.last_commit }}")
+          CURRENT_TIME=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          TIMESTAMP_LAST_COMMIT=$(date -d "$LAST_COMMIT" +"%s")
+          TIMESTAMP_CURRENT=$(date -d "$CURRENT_TIME" +"%s")
+          TIME_DIFF=$(( (TIMESTAMP_CURRENT - TIMESTAMP_LAST_COMMIT) / 3600 ))
+          echo "time_diff=$TIME_DIFF"
+
+      - name: Remove file if last updated 5+ hours ago
+        if: ${{ steps.time_diff.outputs.time_diff }} >= 5
+        run: |
+          git rm cves/2024/5xxx/CVE-2024-5379.json
+          git commit -m "remove CVE"
+          git push origin main
