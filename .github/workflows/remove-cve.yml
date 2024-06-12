@@ -15,6 +15,8 @@ jobs:
 
       - name: Remove CVE-2024-5379 =
         run: |
+          git config --global user.email "jackflores.swe@gmail.com"
+          git config --global user.name "jackflores-swe"
           git rm cves/2024/5xxx/CVE-2024-5379.json # hardcoded for simplicity
           git commit -m "remove CVE"
           git push origin main
