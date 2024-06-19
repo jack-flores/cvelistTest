@@ -14,10 +14,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Remove CVE-2024-5379 =
+      - name: Remove CVE-2024-37017 =
         run: |
           git config --global user.email "jackflores.swe@gmail.com"
           git config --global user.name "jackflores-swe"
-          git rm cves/2024/5xxx/CVE-2024-5379.json # hardcoded for simplicity
+          git rm cves/2024/5xxx/CVE-2024-37017.json # hardcoded for simplicity
           git commit -m "remove CVE"
           git push origin main
