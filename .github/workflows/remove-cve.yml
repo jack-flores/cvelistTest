@@ -1,5 +1,6 @@
 # GitHub Action to remove a CVE last updated 5+ hours ago from main.
 
+
 name: Remove CVE
 
 on:
