@@ -1,5 +1,5 @@
 # GitHub Action to remove a CVE last updated 5+ hours ago from main.
-
+# jack was here from cmd line
 
 name: Remove CVE
 
