@@ -7,7 +7,7 @@ jobs:
   create_and_merge_pr:
     runs-on: ubuntu-latest
     env:
-      GH-TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH-TOKEN: ${{ secrets.TOKEN }}
 
     steps:
       - name: Checkout repository
