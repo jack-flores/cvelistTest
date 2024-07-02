@@ -13,13 +13,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Switch to branch
-        run: |
-          gh checkout pr_branch
+      # - name: Switch to branch
+      #   run: |
+      #     gh checkout pr_branch
       
       - name: Create Pull Request
         run: |
-          gh pr create --title "test pr" --body "a bot made this pr" --base main
+          gh pr create --title "test pr" --body "a bot made this pr" --base main -- head pr_branch
 
       - name: Merge Pull Request
         run: |
