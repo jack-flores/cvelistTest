@@ -6,8 +6,8 @@ on:
 jobs:
   create_and_merge_pr:
     runs-on: ubuntu-latest
-    env:
-      GH_TOKEN: ${{ github.token }}
+    # env:
+    #   GH_TOKEN: ${{ github.token }}
 
     steps:
       - name: Checkout repository
@@ -19,6 +19,7 @@ jobs:
       
       - name: Create Pull Request
         run: |
+          gh auth login --with-token ${{ github.token }}
           gh pr create --title "test pr" --body "a bot made this pr" --base main --head pr_branch
 
       - name: Approve Pull Request
