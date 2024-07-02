@@ -22,6 +22,8 @@ jobs:
           gh pr create --title "test pr" --body "a bot made this pr" --base main --head pr_branch
 
       - name: Approve Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.TOKEN }}
         run: |
           gh pr review pr_branch --approve
 
