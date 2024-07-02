@@ -21,6 +21,10 @@ jobs:
         run: |
           gh pr create --title "test pr" --body "a bot made this pr" --base main --head pr_branch
 
+      - name: Approve Pull Request
+        run: |
+          gh pr review pr_branch --approve
+
       - name: Merge Pull Request
         run: |
           gh pr merge pr_branch --merge --admin --delete-branch
