@@ -13,9 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # - name: Switch to branch
-      #   run: |
-      #     gh pr checkout pr_branch
+      - name: Switch to branch
+        run: |
+          gh checkout pr_branch
       
       - name: Create Pull Request
         run: |
