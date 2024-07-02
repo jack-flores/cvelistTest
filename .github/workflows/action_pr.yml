@@ -23,4 +23,4 @@ jobs:
 
       - name: Merge Pull Request
         run: |
-          gh pr merge pr_branch --merge --delete-branch
+          gh pr merge pr_branch --merge --admin --delete-branch
