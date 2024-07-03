@@ -19,6 +19,10 @@ jobs:
           echo "${ACTIONS_BOT_TOKEN}" > bottoken.txt
           gh auth login --with-token < bottoken.txt
           git switch --create pr_branch
+          echo "new file" > file.txt
+          git add file.txt
+          git commit -m "bot commit"
+          git push -u origin pr_branch
       
       - name: Create Pull Request
         run: |
