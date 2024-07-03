@@ -13,20 +13,17 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      # - name: Switch to branch
-      #   run: |
-      #     gh checkout pr_branch
+        
       - name: Create New Branch
         run: |
           echo "${ACTIONS_BOT_TOKEN}" > bottoken.txt
           gh auth login --with-token < bottoken.txt
           gh codespace create --branch pr_branch
-          echo "jack was here" > new_file.txt
-          git checkout pr_branch
-          git add new_file.txt
-          git commit -m "commit to be merged"
-          git push
+          # echo "jack was here" > new_file.txt
+          # git checkout pr_branch
+          # git add new_file.txt
+          # git commit -m "commit to be merged"
+          # git push
       
       - name: Create Pull Request
         run: |
@@ -40,4 +37,5 @@ jobs:
 
       - name: Merge Pull Request
         run: |
+          gh auth login --with-token < bottoken.txt
           gh pr merge pr_branch --merge --admin --delete-branch
