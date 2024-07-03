@@ -19,7 +19,7 @@ jobs:
         run: |
           git config --global user.email "github_action@example.com"
           git config --global user.name "cvelistV5 Github Action"
-          git switch --create pr_branch
+          git switch --create bot_pr_branch
           echo "github actions bot was here ${CURRENT_DATE}" >> bot_file.txt
           git add -f bot_file.txt
           git commit -m "bot commit"
@@ -27,6 +27,8 @@ jobs:
       
       - name: Create Pull Request
         run: |
+          echo "${ACTIONS_BOT_TOKEN}" > bottoken.txt
+          gh auth login --with-token < bottoken.txt
           gh pr create --title "bot pr ${CURRENT_DATE}" --body "a bot made this pr" --base main --head bot_pr_branch
 
       - name: Approve Pull Request
@@ -38,4 +40,4 @@ jobs:
       - name: Merge Pull Request
         run: |
           gh auth login --with-token < bottoken.txt
-          gh pr merge pr_branch --merge --admin --delete-branch
+          gh pr merge bot_pr_branch --merge --admin --delete-branch
