@@ -9,7 +9,7 @@ jobs:
     env:
       ACTIONS_BOT_TOKEN: ${{ github.token }}
       USER_TOKEN: ${{ secrets.TOKEN }}
-      DATE: $(date +'%Y-%m-%dT%H:%M:%S')
+      # DATE: $(date +'%Y-%m-%dT%H:%M:%S')
 
     steps:
       - name: Checkout repository
@@ -17,10 +17,11 @@ jobs:
         
       - name: Create New Branch
         run: |
+          export TIMESTAMP=$(date '+%Y-%m-%d_%H%M_UTC')
           git config --global user.email "github_action@example.com"
           git config --global user.name "cvelistV5 Github Action"
           git switch --create bot_pr_branch
-          echo "github actions bot was here ${DATE}" >> bot_file.txt
+          echo "github actions bot was here ${TIMESTAMP}" >> bot_file.txt
           git add -f bot_file.txt
           git commit -m "bot commit"
           git push -u origin bot_pr_branch
@@ -29,7 +30,7 @@ jobs:
         run: |
           echo "${ACTIONS_BOT_TOKEN}" > bottoken.txt
           gh auth login --with-token < bottoken.txt
-          gh pr create --title "bot pr ${DATE}" --body "a bot made this pr" --base main --head bot_pr_branch
+          gh pr create --title "bot pr ${TIMESTAMP}" --body "a bot made this pr" --base main --head bot_pr_branch
 
       - name: Approve Pull Request
         run: |
