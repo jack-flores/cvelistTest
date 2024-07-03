@@ -1,2 +1,3 @@
 github actions bot was here
 github actions bot was here $(date)
+github actions bot was here $(date +'%Y-%m-%dT%H:%M:%S')
