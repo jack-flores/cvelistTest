@@ -15,6 +15,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         
+      - name: Set Timestamp
+        run: |
+          echo "TIMESTAMP=$(date '+%Y-%m-%d_%H%M_UTC')" >> $GITHUB_ENV
+          
       - name: Create New Branch
         run: |
           echo "TIMESTAMP=$(date '+%Y-%m-%d_%H%M_UTC')" >> $GITHUB_ENV
