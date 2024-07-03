@@ -35,7 +35,7 @@ jobs:
         run: |
           echo "${USER_TOKEN}" > mytoken.txt
           gh auth login --with-token < mytoken.txt
-          gh pr review pr_branch --approve
+          gh pr review bot_pr_branch --approve
 
       - name: Merge Pull Request
         run: |
