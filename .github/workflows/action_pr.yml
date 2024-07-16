@@ -55,5 +55,6 @@ jobs:
         run: |
           # echo "${{ steps.app-token.outputs.token }}" > apptoken.txt
           # gh auth login --with-token < apptoken.txt
+          echo "${ACTIONS_BOT_TOKEN}" > bottoken.txt
           gh auth login --with-token < bottoken.txt
           gh pr merge bot_pr_branch --merge --admin --delete-branch
