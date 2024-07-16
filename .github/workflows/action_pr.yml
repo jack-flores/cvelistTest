@@ -45,8 +45,10 @@ jobs:
 
       - name: Approve Pull Request
         run: |
-          echo "${USER_TOKEN}" > mytoken.txt
-          gh auth login --with-token < mytoken.txt
+          # echo "${USER_TOKEN}" > mytoken.txt
+          # gh auth login --with-token < mytoken.txt
+          echo "${ACTIONS_BOT_TOKEN}" > bottoken.txt
+          gh auth login --with-token < bottoken.txt
           # echo "${{ steps.app-token.outputs.token }}" > apptoken.txt
           # gh auth login --with-token < apptoken.txt
           gh pr review bot_pr_branch --approve
@@ -55,6 +57,6 @@ jobs:
         run: |
           # echo "${{ steps.app-token.outputs.token }}" > apptoken.txt
           # gh auth login --with-token < apptoken.txt
-          echo "${ACTIONS_BOT_TOKEN}" > bottoken.txt
-          gh auth login --with-token < bottoken.txt
+          # echo "${ACTIONS_BOT_TOKEN}" > bottoken.txt
+          # gh auth login --with-token < bottoken.txt
           gh pr merge bot_pr_branch --merge --admin --delete-branch
