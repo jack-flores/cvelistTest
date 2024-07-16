@@ -51,7 +51,7 @@ jobs:
 
       - name: Merge Pull Request
         run: |
-          echo "${{ steps.app-token.outputs.token }}" > apptoken.txt
+          echo "${ steps.app-token.outputs.token }" > apptoken.txt
           gh auth login --with-token < apptoken.txt
           # gh auth login --with-token < bottoken.txt
           gh pr merge bot_pr_branch --merge --admin --delete-branch
