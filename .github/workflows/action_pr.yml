@@ -14,6 +14,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - uses: actions/create-github-app-token@v1
+        id: app-token
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
         
       - name: Set Timestamp
         run: |
@@ -37,8 +43,9 @@ jobs:
 
       - name: Approve Pull Request
         run: |
-          echo "${USER_TOKEN}" > mytoken.txt
-          gh auth login --with-token < mytoken.txt
+          # echo "${USER_TOKEN}" > mytoken.txt
+          echo "${{ steps.app-token.outputs.token }}" > apptoken.txt
+          gh auth login --with-token < apptoken.txt
           gh pr review bot_pr_branch --approve
 
       - name: Merge Pull Request
