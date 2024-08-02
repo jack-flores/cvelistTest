@@ -1,4 +1,3 @@
-testing an auto pr merge via actions
 
 
 > **Note 2024-05-08 5:30pm**:  CVE REST Services was updated to the CVE Record Format Schema 5.1 on 2024-05-08 at 5:30pm EDT. The CVE Records that were added or updated previous to this time will continue to stay in CVE Record Format Schema 5.0 in this repository and on CVE REST Services, and you can continue to parse them using Schema 5.0.  However, all CVE Records updated after this time will require Schema 5.1.  Because Schema 5.1 is a superset of Schema 5.0, you should be able to parse the majority of records using Schema 5.1.  For the small set of records that cannot be parsed in Schema 5.1, the CNAs have been notified to update their records.
